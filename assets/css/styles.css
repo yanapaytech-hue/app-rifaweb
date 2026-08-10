@@ -559,3 +559,36 @@ body {
     font-size: 1.05rem;
     border-radius: var(--radius-sm);
 }
+
+/* Botón Ver Grande en Leyenda */
+.btn-ampliar {
+    background-color: var(--accent-blue);
+    color: #ffffff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ampliar:hover {
+    background-color: #2563eb;
+    transform: scale(1.03);
+}
+
+/* Modal Tamaño Extra Grande */
+.modal-card-xl {
+    max-width: 900px;
+    width: 95vw;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.numeros-grid-lg {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}

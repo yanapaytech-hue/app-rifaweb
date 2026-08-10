@@ -50,7 +50,7 @@ const ui = {
     /**
      * Genera las pestañas dinámicamente según el rango (Ej: 101-150, 151-200)
      */
-renderizarTabs(config) {
+    renderizarTabs(config) {
         const container = document.getElementById('range-tabs');
         if (!container) return;
 
@@ -76,25 +76,6 @@ renderizarTabs(config) {
         this.renderizarTabs(app.data.configuracion);
         this.renderizarTablero();
     },
-
-/**
-        renderizarTablero(total, boletos) {
-        const grid = document.getElementById('numeros-grid');
-        let html = '';
-
-        for (let i = 1; i <= total; i++) {
-            const numStr = String(i);
-            const boleto = boletos[numStr] || { estado: 'disponible' };
-            const esOcupado = boleto.estado === 'ocupado';
-            
-            const claseEstado = esOcupado ? 'ocupado' : '';
-            const numPadded = String(i).padStart(2, '0');
-
-            html += `<button class="num-btn ${claseEstado}" id="btn-num-${i}" onclick="ui.onNumeroClick(${i})">${numPadded}</button>`;
-        }
-
-        grid.innerHTML = html;
-    },*/
 
     /**
      * Muestra solo los números que corresponden a la pestaña seleccionada
@@ -129,30 +110,116 @@ renderizarTabs(config) {
      * Manejador de click en un número
      */
     
-    onNumeroClick(numero) {
+    /*onNumeroClick(numero) {
         const exito = app.toggleNumero(numero);
         if (!exito) return;
 
         this.renderizarTablero();
         this.actualizarBarraCarrito();
+    },*/
+    
+    // Agregar dentro del objeto ui en assets/js/ui.js
+
+    /**
+     * Abre el popup del tablero ampliado y sincroniza los contenidos
+     */
+    abrirModalTableroGrande() {
+        const modal = document.getElementById('modal-tablero-grande');
+        if (modal) {
+            this.renderizarTabsModal(app.data.configuracion);
+            this.renderizarTableroModal();
+            modal.classList.add('active');
+        }
+    },
+
+    /**
+     * Cierra el popup del tablero ampliado
+     */
+    cerrarModalTableroGrande() {
+        const modal = document.getElementById('modal-tablero-grande');
+        if (modal) {
+            modal.classList.remove('active');
+        }
+    },
+
+    /**
+     * Renderiza las pestañas dentro del modal
+     */
+    renderizarTabsModal(config) {
+        const container = document.getElementById('modal-range-tabs');
+        if (!container) return;
+
+        const inicio = config.numero_inicio || 1;
+        const total = config.total_boletos || 100;
+        const porPagina = config.por_pagina || 50;
+        const cantidadTabs = Math.ceil(total / porPagina);
+
+        let html = '';
+        for (let i = 0; i < cantidadTabs; i++) {
+            const numInicioGroup = inicio + (i * porPagina);
+            const numFinGroup = Math.min(inicio + ((i + 1) * porPagina) - 1, inicio + total - 1);
+            const activeClass = i === app.rangoActualIndex ? 'active' : '';
+
+            html += `<button class="tab-btn ${activeClass}" onclick="ui.cambiarRangoModal(${i})">${numInicioGroup} - ${numFinGroup}</button>`;
+        }
+
+        container.innerHTML = html;
+    },
+
+    /**
+     * Cambia el rango y actualiza ambas vistas (principal y modal)
+     */
+    cambiarRangoModal(index) {
+        app.rangoActualIndex = index;
+        this.renderizarTabs(app.data.configuracion);
+        this.renderizarTablero();
+        this.renderizarTabsModal(app.data.configuracion);
+        this.renderizarTableroModal();
+    },
+
+    /**
+     * Renderiza la grilla de números dentro del modal
+     */
+    renderizarTableroModal() {
+        const config = app.data.configuracion;
+        const boletos = app.data.boletos;
+        const grid = document.getElementById('modal-numeros-grid');
+        if (!grid) return;
+
+        const inicio = config.numero_inicio || 1;
+        const porPagina = config.por_pagina || 50;
+
+        const minNum = inicio + (app.rangoActualIndex * porPagina);
+        const maxNum = Math.min(minNum + porPagina - 1, inicio + config.total_boletos - 1);
+
+        let html = '';
+        for (let i = minNum; i <= maxNum; i++) {
+            const numStr = String(i);
+            const boleto = boletos[numStr] || { estado: 'disponible' };
+            const esOcupado = boleto.estado === 'ocupado';
+            const esSeleccionado = app.numerosSeleccionados.includes(i);
+
+            let claseEstado = esOcupado ? 'ocupado' : '';
+            if (esSeleccionado) claseEstado += ' seleccionado';
+
+            html += `<button class="num-btn ${claseEstado}" onclick="ui.onNumeroClick(${i})">${i}</button>`;
+        }
+
+        grid.innerHTML = html;
     },
     
-    /** onNumeroClick(numero) {
+    // Sobrescribe onNumeroClick para mantener sincronizadas ambas pantallas
+    onNumeroClick(numero) {
         const exito = app.toggleNumero(numero);
         if (!exito) return;
 
-        // Actualizar aspecto visual del botón
-        const btn = document.getElementById(`btn-num-${numero}`);
-        btn.classList.toggle('seleccionado');
-
-        // Actualizar barra flotante
+        this.renderizarTablero();
+        this.renderizarTableroModal();
         this.actualizarBarraCarrito();
-    },*/
+    },
 
-    /**
-     * Actualiza los totales de la barra flotante
-     */
-    actualizarBarraCarrito() {
+    // Actualiza los totales de la barra flotante
+    /*actualizarBarraCarrito() {
         const resumen = app.obtenerResumen();
         const cartBar = document.getElementById('cart-bar');
 
@@ -165,11 +232,38 @@ renderizarTabs(config) {
         } else {
             cartBar.classList.remove('visible');
         }
-    },
+    },*/
 
     /**
-     * Abre el modal de reserva
+     * Actualiza los totales de la barra flotante con verificaciones nulas
      */
+    actualizarBarraCarrito() {
+        const resumen = app.obtenerResumen();
+        const cartBar = document.getElementById('cart-bar');
+        const cartCant = document.getElementById('cart-cant');
+        const cartLista = document.getElementById('cart-lista');
+        const cartMonto = document.getElementById('cart-monto');
+
+        // Si alguno de los elementos del DOM no existe, detiene la ejecución para evitar fallos
+        if (!cartBar || !cartCant || !cartLista || !cartMonto) {
+            console.warn("Advertencia: No se encontraron todos los elementos del carrito en el DOM.");
+            return;
+        }
+
+        // Asignación segura de valores
+        cartCant.textContent = resumen.cantidad;
+        cartLista.textContent = resumen.listaTexto;
+        cartMonto.textContent = resumen.montoFormateado;
+
+        // Alterna la visibilidad
+        if (resumen.cantidad > 0) {
+            cartBar.classList.add('visible');
+        } else {
+            cartBar.classList.remove('visible');
+        }
+    },
+
+    // Abre el modal de reserva
     abrirModalWhatsApp() {
         const resumen = app.obtenerResumen();
         if (resumen.cantidad === 0) return;
@@ -179,9 +273,7 @@ renderizarTabs(config) {
         document.getElementById('modal-reserva').classList.add('active');
     },
 
-    /**
-     * Cierra el modal de reserva
-     */
+    // Cierra el modal de reserva
     cerrarModalWhatsApp() {
         document.getElementById('modal-reserva').classList.remove('active');
     },
