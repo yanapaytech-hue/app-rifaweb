@@ -1,0 +1,35 @@
+{
+    "configuracion": {
+        "titulo": "Gran Rifa Pro-Fondos 2026",
+        "descripcion": "¡Participa, apoyanos y gana un excelente premio en tecnología y hogar!",
+        "precio_boleto": 10.0,
+        "moneda": "S/",
+        "whatsapp_contacto": "+51 987 654 321",
+        "total_boletos": 50
+    },
+    "premios": [
+        {
+            "puesto": "1er Premio",
+            "nombre": "Impresora Lasser PANTUM 55\" P2509",
+            "icono": "📺"
+        },
+        {
+            "puesto": "2do Premio",
+            "nombre": "Premio Sorpresa\" -",
+            "icono": "📱"
+        },
+        {
+            "puesto": "3er Premio",
+            "nombre": "Premio Sorpresa",
+            "icono": "🧺"
+        }
+    ],
+    "boletos": {
+        "1": { "estado": "disponible" },
+        "2": { "estado": "ocupado", "comprador": "Reservado" },
+        "3": { "estado": "disponible" },
+        "4": { "estado": "disponible" },
+        "5": { "estado": "ocupado", "comprador": "Reservado" },
+        "12": { "estado": "ocupado", "comprador": "Reservado" }
+    }
+}
