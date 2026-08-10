@@ -5,6 +5,10 @@
         "precio_boleto": 10.0,
         "moneda": "S/",
         "whatsapp_contacto": "+51 987 654 321",
+        "fecha_sorteo": "21 de Agosto",
+        "hora_sorteo": "1:30 PM",
+        "plataforma": "ZOOM",
+        "url_transmision": "https://zoom.us/es/join",
         "numero_inicio": 101,
         "total_boletos": 50,
         "por_pagina": 50

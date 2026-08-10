@@ -28,6 +28,101 @@
                 <img src="assets/img/banner.jpeg" alt="Afiche Rifa" class="afiche-img" id="afiche-img" onclick="ui.abrirImagenModal()">
             </div>
 
+            <!--CONFGURANDO PANEL -->
+<div class="card-info-panel">
+    
+    <!-- Bloque Superior: Datos del Evento -->
+   
+    <div class="info-header-grid">
+        <div class="info-item">
+            <span class="icon">📅</span>
+            <span class="label">SORTEO</span>
+            <span class="val-yellow" id="event-fecha">--</span>
+        </div>
+        <div class="info-item border-x">
+            <span class="icon">⏱️</span>
+            <span class="label">HORA</span>
+            <span class="val-green" id="event-hora">--</span>
+        </div>
+        <!-- Enlace dinámico a la sesión -->
+        <a href="#" id="event-url" target="_blank" class="info-item info-item-link">
+            <span class="icon">📹</span>
+            <span class="label">VÍA</span>
+            <span class="val-blue" id="event-plataforma">ZOOM</span>
+            <span class="sublabel">En vivo ↗</span>
+        </a>
+    </div>
+
+    <!-- Bloque Valor Ticket -->
+    <div class="price-banner">
+        <div>
+            <span class="price-label">VALOR DEL NÚMERO</span>
+            <div class="price-value">S/ 10</div>
+        </div>
+        <div class="ticket-icon">🎫</div>
+    </div>
+
+    <!-- Bloque Premios -->
+    <div class="prizes-section">
+        <!-- 1er Premio Destacado -->
+        <div class="badge-gold">🏆 1ER PREMIO</div>
+        <h3 class="prize-title">Impresora Láser</h3>
+        <h3 class="prize-subtitle">Pantum P2509W</h3>
+        
+        <ul class="features-list">
+            <li><span class="check">✓</span> Toner recargable</li>
+            <li><span class="check">✓</span> Memoria 128 MB</li>
+            <li><span class="check">✓</span> Compacta y eficiente</li>
+        </ul>
+
+        <!-- 2do y 3er Premio -->
+        <div class="secondary-prizes-grid">
+            <div class="sec-prize-card">
+                <span class="gift-icon">🎁</span>
+                <div>
+                    <span class="sec-prize-tag tag-pink">2DO PREMIO</span>
+                    <span class="sec-prize-name">Sorpresa</span>
+                </div>
+            </div>
+            <div class="sec-prize-card">
+                <span class="gift-icon">🎁</span>
+                <div>
+                    <span class="sec-prize-tag tag-blue">3ER PREMIO</span>
+                    <span class="sec-prize-name">Sorpresa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bloque Medio de Pago -->
+    <div class="payment-section">
+        <div>
+            <span class="payment-label">PAGA CON</span>
+            <div class="payment-method">Plin</div>
+            <div class="payment-number">979 374 568</div>
+            <div class="payment-owner">Luis Cav</div>
+        </div>
+        <div class="card-icon-box">💳</div>
+    </div>
+
+    <!-- Bloque Métricas Inferiores -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-num val-white" id="metric-disponibles">87</span>
+            <span class="metric-label">Disponibles</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-num val-yellow" id="metric-seleccionados">0</span>
+            <span class="metric-label">Seleccionados</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-num val-blue-light" id="metric-reservados">13</span>
+            <span class="metric-label">Reservados</span>
+        </div>
+    </div>
+
+</div>
+
             <!-- Sección de Premios -->
             <section class="section container">
                 <h2 class="section-title">Premios a Sortear</h2>
