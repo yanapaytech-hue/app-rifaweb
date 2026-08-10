@@ -8,7 +8,7 @@ const app = {
     // Estado interno
     data: null,
     numerosSeleccionados: [],
-
+    rangoActualIndex: 0, // 0 para el primer grupo (101-150), 1 para el segundo (151-200)
     /**
      * Carga el archivo de datos data.json
      */

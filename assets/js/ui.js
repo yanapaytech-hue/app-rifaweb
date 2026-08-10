@@ -13,8 +13,11 @@ const ui = {
             const data = await app.cargarDatos();
             this.renderizarEncabezado(data.configuracion);
             this.renderizarPremios(data.premios);
-            this.renderizarTablero(data.configuracion.total_boletos, data.boletos);
+            /*se agrega tab para la presentación*/
+            this.renderizarTabs(data.configuracion);
+            this.renderizarTablero();
         } catch (e) {
+            console.error(e);
             alert("Ocurrió un error al cargar la información de la rifa.");
         }
     },
@@ -32,6 +35,7 @@ const ui = {
      */
     renderizarPremios(premios) {
         const container = document.getElementById('premios-container');
+        if(!container) return;  /*agreba el tab para varias paginas*/
         container.innerHTML = premios.map(p => `
             <div class="premio-card">
                 <div class="premio-icono">${p.icono}</div>
@@ -44,9 +48,37 @@ const ui = {
     },
 
     /**
-     * Renderiza la grilla de números
+     * Genera las pestañas dinámicamente según el rango (Ej: 101-150, 151-200)
      */
-    renderizarTablero(total, boletos) {
+renderizarTabs(config) {
+        const container = document.getElementById('range-tabs');
+        if (!container) return;
+
+        const inicio = config.numero_inicio || 1;
+        const total = config.total_boletos || 100;
+        const porPagina = config.por_pagina || 50;
+        const cantidadTabs = Math.ceil(total / porPagina);
+
+        let html = '';
+        for (let i = 0; i < cantidadTabs; i++) {
+            const numInicioGroup = inicio + (i * porPagina);
+            const numFinGroup = Math.min(inicio + ((i + 1) * porPagina) - 1, inicio + total - 1);
+            const activeClass = i === app.rangoActualIndex ? 'active' : '';
+
+            html += `<button class="tab-btn ${activeClass}" onclick="ui.cambiarRango(${i})">${numInicioGroup} - ${numFinGroup}</button>`;
+        }
+
+        container.innerHTML = html;
+    },
+
+    cambiarRango(index) {
+        app.rangoActualIndex = index;
+        this.renderizarTabs(app.data.configuracion);
+        this.renderizarTablero();
+    },
+
+/**
+        renderizarTablero(total, boletos) {
         const grid = document.getElementById('numeros-grid');
         let html = '';
 
@@ -62,12 +94,50 @@ const ui = {
         }
 
         grid.innerHTML = html;
-    },
+    },*/
 
+    /**
+     * Muestra solo los números que corresponden a la pestaña seleccionada
+     */
+    renderizarTablero() {
+        const config = app.data.configuracion;
+        const boletos = app.data.boletos;
+        const grid = document.getElementById('numeros-grid');
+
+        const inicio = config.numero_inicio || 1;
+        const porPagina = config.por_pagina || 50;
+
+        const minNum = inicio + (app.rangoActualIndex * porPagina);
+        const maxNum = Math.min(minNum + porPagina - 1, inicio + config.total_boletos - 1);
+
+        let html = '';
+        for (let i = minNum; i <= maxNum; i++) {
+            const numStr = String(i);
+            const boleto = boletos[numStr] || { estado: 'disponible' };
+            const esOcupado = boleto.estado === 'ocupado';
+            const esSeleccionado = app.numerosSeleccionados.includes(i);
+
+            let claseEstado = esOcupado ? 'ocupado' : '';
+            if (esSeleccionado) claseEstado += ' seleccionado';
+
+            html += `<button class="num-btn ${claseEstado}" id="btn-num-${i}" onclick="ui.onNumeroClick(${i})">${i}</button>`;
+        }
+
+        grid.innerHTML = html;
+    },
     /**
      * Manejador de click en un número
      */
+    
     onNumeroClick(numero) {
+        const exito = app.toggleNumero(numero);
+        if (!exito) return;
+
+        this.renderizarTablero();
+        this.actualizarBarraCarrito();
+    },
+    
+    /** onNumeroClick(numero) {
         const exito = app.toggleNumero(numero);
         if (!exito) return;
 
@@ -77,7 +147,7 @@ const ui = {
 
         // Actualizar barra flotante
         this.actualizarBarraCarrito();
-    },
+    },*/
 
     /**
      * Actualiza los totales de la barra flotante

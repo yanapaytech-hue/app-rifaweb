@@ -19,8 +19,8 @@
             <!-- Header / Banner principal -->
             <header class="hero">
                 <span class="badge" id="rifa-categoria">Sorteo Regalón</span>
-                <h1 id="rifa-titulo">Gran Rifa de Confraternidad</h1>
-                <p id="rifa-descripcion">¡Participa y gana un increíble premio! Selecciona tus números de la suerte.</p>
+                <h1 id="rifa-titulo">Gran Rifa</h1>
+                <p id="rifa-descripcion">"¡Apoyanos participanto y gana un excelente premio para tu hogar o negocio!"</p>
             </header>
 
             <!-- NUEVA SECCIÓN: IMAGEN / AFICHE -->               
@@ -48,12 +48,17 @@
                 </div>
                 <!-- Leyenda de estados -->
                 <div class="leyenda">
-                    <span class="item-leyenda"><i class="dot libre"></i> Disponible</span>
-                    <span class="item-leyenda"><i class="dot seleccionado"></i> Seleccionado</span>
+                   <span class="item-leyenda"><i class="dot libre"></i> Disponible</span>
+                   <span class="item-leyenda"><i class="dot seleccionado"></i> Seleccionado</span>
                    <span class="item-leyenda"><i class="dot ocupado"></i> Vendido / Reservado</span>
                 </div>
             </div>
-
+            
+            <!-- PESTAÑAS DE RANGOS DE NÚMEROS -->
+            <div class="range-tabs" id="range-tabs">
+                <!-- Se generan dinámicamente según la configuración -->
+            </div>
+            
             <!-- Rejilla de números -->
             <div class="numeros-grid" id="numeros-grid">
                 <!-- Cargado dinámicamente -->
@@ -103,7 +108,7 @@
     </div>    
     <!-- Pie de página -->
     <footer class="footer container">
-        <p>&copy; 2026 Gran Rifa Digital. Todos los derechos reservados.</p>
+        <p>&copy; 2026 - Gran Rifa Confraternidad. Agracias por tu apoyo.</p>
     </footer>
 
     <!-- Carga de Scripts (Primero lógica de negocio app.js, luego ui.js) -->
@@ -112,8 +117,8 @@
 
     <!-- MODAL PARA VER IMAGEN EN TAMAÑO COMPLETO -->
     <div class="modal-overlay" id="modal-imagen" onclick="ui.cerrarImagenModal()">
-    <span class="modal-imagen-close">&times;</span>
-    <img class="modal-imagen-content" id="img-ampliada" alt="Banner Completo">
-</div>
+        <span class="modal-imagen-close">&times;</span>
+        <img class="modal-imagen-content" id="img-ampliada" alt="Banner Completo">
+    </div>
 </body>
 </html>

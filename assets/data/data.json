@@ -1,16 +1,18 @@
 {
     "configuracion": {
-        "titulo": "Gran Rifa Pro-Fondos 2026",
-        "descripcion": "¡Participa, apoyanos y gana un excelente premio en tecnología y hogar!",
+        "titulo": "Gran Rifa",
+        "descripcion": "¡Apoyanos participanto y gana un excelente premio para tu hogar o negocio!",
         "precio_boleto": 10.0,
         "moneda": "S/",
         "whatsapp_contacto": "+51 987 654 321",
-        "total_boletos": 50
+        "numero_inicio": 101,
+        "total_boletos": 50,
+        "por_pagina": 50
     },
     "premios": [
         {
             "puesto": "1er Premio",
-            "nombre": "Impresora Lasser PANTUM 55\" P2509",
+            "nombre": "Impresora Lasser PANTUM P2509",
             "icono": "📺"
         },
         {
@@ -25,11 +27,12 @@
         }
     ],
     "boletos": {
-        "1": { "estado": "disponible" },
-        "2": { "estado": "ocupado", "comprador": "Reservado" },
-        "3": { "estado": "disponible" },
-        "4": { "estado": "disponible" },
-        "5": { "estado": "ocupado", "comprador": "Reservado" },
-        "12": { "estado": "ocupado", "comprador": "Reservado" }
+        "101": { "estado": "disponible" },
+        "102": { "estado": "ocupado", "comprador": "Reservado" },
+        "103": { "estado": "disponible" },
+        "104": { "estado": "disponible" },
+        "105": { "estado": "ocupado", "comprador": "Reservado" },
+        "112": { "estado": "ocupado", "comprador": "Reservado" },
+        "149": { "estado": "ocupado", "comprador": "Reservado" }
     }
 }
