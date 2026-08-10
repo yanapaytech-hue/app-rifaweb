@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Rifa Digital 2026</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- CONTENEDOR PRINCIPAL DOS COLUMNAS -->
+    <div class="app-layout">
+
+        <!-- COLUMNA IZQUIERDA: HERO + PREMIOS -->
+        <aside class="col-izquierda">
+            <!-- Header / Banner principal -->
+            <header class="hero">
+                <span class="badge" id="rifa-categoria">Sorteo Regalón</span>
+                <h1 id="rifa-titulo">Gran Rifa de Confraternidad</h1>
+                <p id="rifa-descripcion">¡Participa y gana un increíble premio! Selecciona tus números de la suerte.</p>
+            </header>
+
+            <!-- NUEVA SECCIÓN: IMAGEN / AFICHE -->               
+            <div class="afiche-container">
+                <img src="assets/img/banner.jpeg" alt="Afiche Rifa" class="afiche-img" id="afiche-img" onclick="ui.abrirImagenModal()">
+            </div>
+
+            <!-- Sección de Premios -->
+            <section class="section container">
+                <h2 class="section-title">Premios a Sortear</h2>
+                <div class="premios-grid" id="premios-container">
+                    <!-- Cargado dinámicamente -->
+                </div>
+            </section>
+        </aside>
+        
+        <!-- COLUMNA DERECHA: TABLERO DE NÚMEROS -->
+        <main class="col-derecha">
+            <!-- Tablero de Selección de Números**>
+            <main class="section container"-->
+            <div class="header-tablero">
+                <div>
+                    <h2 class="section-title">Elige tus Números</h2>
+                    <p class="subtitle">Haz clic en los números disponibles para seleccionarlos</p>
+                </div>
+                <!-- Leyenda de estados -->
+                <div class="leyenda">
+                    <span class="item-leyenda"><i class="dot libre"></i> Disponible</span>
+                    <span class="item-leyenda"><i class="dot seleccionado"></i> Seleccionado</span>
+                   <span class="item-leyenda"><i class="dot ocupado"></i> Vendido / Reservado</span>
+                </div>
+            </div>
+
+            <!-- Rejilla de números -->
+            <div class="numeros-grid" id="numeros-grid">
+                <!-- Cargado dinámicamente -->
+            </div>
+ 
+             <!-- Barra flotante / Resumen de Compra -->
+            <div class="cart-bar" id="cart-bar">
+                <div class="cart-info">
+                    <span class="cart-count"><strong id="cart-cant">0</strong> números seleccionados</span>
+                    <span class="cart-numbers" id="cart-lista">-</span>
+                </div>
+                <div class="cart-action">
+                    <span class="cart-total">Total: <strong id="cart-monto">S/ 0.00</strong></span>
+                    <button class="btn btn-whatsapp" id="btn-reservar" onclick="ui.abrirModalWhatsApp()">
+                        Reservar por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal de Reserva WhatsApp -->
+            <div class="modal-overlay" id="modal-reserva">
+                <div class="modal-card">
+                    <button class="modal-close" onclick="ui.cerrarModalWhatsApp()">&times;</button>
+                    <h3>Completar Reserva</h3>
+                    <p>Ingresa tus datos para generar la reserva de tus números seleccionados.</p>
+                    
+                    <form id="form-reserva" onsubmit="ui.confirmarReserva(event)">
+                        <div class="form-group">
+                            <label for="nombre-comprador">Nombre Completo *</label>
+                            <input type="text" id="nombre-comprador" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono-comprador">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="telefono-comprador" placeholder="Ej. 987654321" required>
+                        </div>
+                        <div class="resumen-modal">
+                            <div><span>Números:</span> <strong id="modal-numeros">-</strong></div>
+                            <div><span>Total a Pagar:</span> <strong id="modal-total">S/ 0.00</strong></div>
+                        </div>
+                        <button type="submit" class="btn btn-whatsapp btn-full">
+                            Enviar Mensaje a WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>    
+    <!-- Pie de página -->
+    <footer class="footer container">
+        <p>&copy; 2026 Gran Rifa Digital. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Carga de Scripts (Primero lógica de negocio app.js, luego ui.js) -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/ui.js"></script>
+
+    <!-- MODAL PARA VER IMAGEN EN TAMAÑO COMPLETO -->
+    <div class="modal-overlay" id="modal-imagen" onclick="ui.cerrarImagenModal()">
+    <span class="modal-imagen-close">&times;</span>
+    <img class="modal-imagen-content" id="img-ampliada" alt="Banner Completo">
+</div>
+</body>
+</html>
