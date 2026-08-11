@@ -58,7 +58,7 @@
     "121": { "estado": "ocupado", "comprador": "sss" },
     "122": { "estado": "ocupado", "comprador": "edi" },
     "123": { "estado": "disponible" },
-    "124": { "estado": "disponible" },
+    "124": { "estado": "ocupado", "comprador": "noe" },
     "125": { "estado": "disponible" },
     "126": { "estado": "ocupado", "comprador": "nic" },
     "127": { "estado": "ocupado", "comprador": "osc" },
