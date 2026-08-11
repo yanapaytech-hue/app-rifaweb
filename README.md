@@ -12,3 +12,5 @@ gran_rifa_web/
     │   └── app.js             # LÓGICA DE NEGOCIO (Carga JSON, calcula totales, valida estados)
     └── data/
         └── data.json          # Datos de la rifa (precios, números, premios)
+
+#Mejoremos este readme
