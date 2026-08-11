@@ -25,11 +25,39 @@ const ui = {
     /**
      * Actualiza el título y la descripción
      */
-    renderizarEncabezado(config) {
+    /** 
+     * renderizarEncabezado(config) {
         document.getElementById('rifa-titulo').textContent = config.titulo;
         document.getElementById('rifa-descripcion').textContent = config.descripcion;
     },
+     */
 
+    /**
+     * Renderiza la información general y del evento desde data.json
+     */
+    renderizarEncabezado(config) {
+        // Títulos principales
+        const elTitulo = document.getElementById('rifa-titulo');
+        const elDesc = document.getElementById('rifa-descripcion');
+        if (elTitulo) elTitulo.textContent = config.titulo;
+        if (elDesc) elDesc.textContent = config.descripcion;
+
+        // Fecha y Hora
+        const elFecha = document.getElementById('event-fecha');
+        const elHora = document.getElementById('event-hora');
+        if (elFecha) elFecha.textContent = config.fecha_sorteo || '--';
+        if (elHora) elHora.textContent = config.hora_sorteo || '--';
+
+        // Plataforma y Enlace URL
+        const elPlataforma = document.getElementById('event-plataforma');
+        const elUrl = document.getElementById('event-url');
+
+        if (elPlataforma) elPlataforma.textContent = config.plataforma || 'ZOOM';
+        if (elUrl && config.url_transmision) {
+            elUrl.href = config.url_transmision;
+        }
+    },
+    
     /**
      * Renderiza las tarjetas de premios
      */
@@ -106,23 +134,9 @@ const ui = {
 
         grid.innerHTML = html;
     },
-    /**
-     * Manejador de click en un número
-     */
-    
-    /*onNumeroClick(numero) {
-        const exito = app.toggleNumero(numero);
-        if (!exito) return;
+       
+   //  Abre el popup del tablero ampliado y sincroniza los contenidos
 
-        this.renderizarTablero();
-        this.actualizarBarraCarrito();
-    },*/
-    
-    // Agregar dentro del objeto ui en assets/js/ui.js
-
-    /**
-     * Abre el popup del tablero ampliado y sincroniza los contenidos
-     */
     abrirModalTableroGrande() {
         const modal = document.getElementById('modal-tablero-grande');
         if (modal) {
@@ -218,25 +232,7 @@ const ui = {
         this.actualizarBarraCarrito();
     },
 
-    // Actualiza los totales de la barra flotante
-    /*actualizarBarraCarrito() {
-        const resumen = app.obtenerResumen();
-        const cartBar = document.getElementById('cart-bar');
-
-        document.getElementById('cart-cant').textContent = resumen.cantidad;
-        document.getElementById('cart-lista').textContent = resumen.listaTexto;
-        document.getElementById('cart-monto').textContent = resumen.montoFormateado;
-
-        if (resumen.cantidad > 0) {
-            cartBar.classList.add('visible');
-        } else {
-            cartBar.classList.remove('visible');
-        }
-    },*/
-
-    /**
-     * Actualiza los totales de la barra flotante con verificaciones nulas
-     */
+    // Actualiza los totales de la barra flotante con verificaciones nulas
     actualizarBarraCarrito() {
         const resumen = app.obtenerResumen();
         const cartBar = document.getElementById('cart-bar');
