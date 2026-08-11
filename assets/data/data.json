@@ -51,7 +51,7 @@
     "114": { "estado": "ocupado", "comprador": "jeo" },
     "115": { "estado": "disponible" },
     "116": { "estado": "disponible" },
-    "117": { "estado": "disponible" },
+    "117": { "estado": "ocupado", "comprador": "gio" },
     "118": { "estado": "disponible" },
     "119": { "estado": "ocupado", "comprador": "ros" },
     "120": { "estado": "ocupado", "comprador": "gin" },
