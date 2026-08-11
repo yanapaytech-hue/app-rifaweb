@@ -1,42 +1,46 @@
 {
-    "configuracion": {
-        "titulo": "Gran Rifa",
-        "descripcion": "¡Apoyanos participanto y gana un excelente premio para tu hogar o negocio!",
-        "precio_boleto": 10.0,
-        "moneda": "S/",
-        "whatsapp_contacto": "+51 987 654 321",
-        "fecha_sorteo": "21 de Agosto",
-        "hora_sorteo": "1:30 PM",
-        "plataforma": "ZOOM",
-        "url_transmision": "https://zoom.us/es/join",
-        "numero_inicio": 101,
-        "total_boletos": 50,
-        "por_pagina": 50
+  "configuracion": {
+    "titulo": "Gran Rifa",
+    "descripcion": "¡Apoyanos participanto y gana un excelente premio para tu hogar o negocio!",
+    "precio_boleto": 10.0,
+    "moneda": "S/",
+    "whatsapp_contacto": "+51 987 654 321",
+    "fecha_sorteo": "21 de Agosto",
+    "hora_sorteo": "1:30 PM",
+    "plataforma": "ZOOM",
+    "url_transmision": "https://zoom.us/es/join",
+    "numero_inicio": 101,
+    "total_boletos": 50,
+    "por_pagina": 50,
+    "precioTicket": 10,
+    "plataforma_pago": "Plin SIP",
+    "numero": "979 374 568",
+    "titular": "Luis Cav"
+  },
+  "premios": [
+    {
+      "puesto": "1er Premio",
+      "nombre": "Impresora Lasser PANTUM P2509",
+      "icono": "📺"
     },
-    "premios": [
-        {
-            "puesto": "1er Premio",
-            "nombre": "Impresora Lasser PANTUM P2509",
-            "icono": "📺"
-        },
-        {
-            "puesto": "2do Premio",
-            "nombre": "Premio Sorpresa\" -",
-            "icono": "📱"
-        },
-        {
-            "puesto": "3er Premio",
-            "nombre": "Premio Sorpresa",
-            "icono": "🧺"
-        }
-    ],
-    "boletos": {
-        "101": { "estado": "disponible" },
-        "102": { "estado": "ocupado", "comprador": "Reservado" },
-        "103": { "estado": "disponible" },
-        "104": { "estado": "disponible" },
-        "105": { "estado": "ocupado", "comprador": "Reservado" },
-        "112": { "estado": "ocupado", "comprador": "Reservado" },
-        "149": { "estado": "ocupado", "comprador": "Reservado" }
+    {
+      "puesto": "2do Premio",
+      "nombre": "Premio Sorpresa\" -",
+      "icono": "📱"
+    },
+    {
+      "puesto": "3er Premio",
+      "nombre": "Premio Sorpresa",
+      "icono": "🧺"
     }
+  ],
+  "boletos": {
+    "101": { "estado": "disponible" },
+    "102": { "estado": "ocupado", "comprador": "Reservado" },
+    "103": { "estado": "disponible" },
+    "104": { "estado": "disponible" },
+    "105": { "estado": "ocupado", "comprador": "Reservado" },
+    "112": { "estado": "ocupado", "comprador": "Reservado" },
+    "149": { "estado": "ocupado", "comprador": "Reservado" }
+  }
 }

@@ -11,60 +11,38 @@ const ui = {
   async init() {
     try {
       const data = await app.cargarDatos();
-      this.renderizarApp(data);
+      this.renderizarEncabezado(data.configuracion);
+      this.renderizarPremios(data.premios);
+      /*se agrega tab para la presentación*/
+      this.renderizarTabs(data.configuracion);
+      this.renderizarInfoFinanciera(data.configuracion);
+      this.renderizarTablero();
     } catch (e) {
-      console.error("Error al inicializar la UI:", e);
+      console.error(e);
       alert("Ocurrió un error al cargar la información de la rifa.");
     }
   },
 
-  /**
-   * Orquestador central de renderizado
-   */
-  renderizarApp(data) {
-    if (!data) return;
-
-    this.renderizarEncabezado(data.configuracion);
-    this.renderizarPremios(data.premios);
-    this.renderizarInfoFinanciera(data.configuracion);
-    this.renderizarMetricas();
-    this.renderizarTabs(data.configuracion);
-    this.renderizarTablero();
-  },
-
-  /**
-   * Renderiza la tarjeta de información financiera (Precio y Método de pago)
-   */
   renderizarInfoFinanciera(config) {
-    if (!config) return;
-
-    const precioElem = document.getElementById("label-precio-ticket");
-    const metodoElem = document.getElementById("label-medio-pago");
-    const numeroElem = document.getElementById("label-numero-pago");
-    const titularElem = document.getElementById("label-titular-pago");
-
-    const precio = config.precioTicket || config.precio_boleto || 0;
-    const moneda = config.moneda || "S/";
-
-    if (precioElem) precioElem.textContent = `${moneda} ${precio}`;
-    if (metodoElem) metodoElem.textContent = config.plataforma_pago || "--";
-    if (numeroElem) numeroElem.textContent = config.numero || "--";
-    if (titularElem) titularElem.textContent = config.titular || "--";
+    // Inyectar datos en el HTML
+    document.getElementById("label-precio-ticket").textContent =
+      `S/ ${config.precioTicket}`;
+    document.getElementById("label-medio-pago").textContent =
+      config.plataforma_pago;
+    document.getElementById("label-numero-pago").textContent = config.numero;
+    document.getElementById("label-titular-pago").textContent = config.titular;
   },
 
-  /**
-   * Renderiza la información general del evento y los encabezados
-   */
-  renderizarEncabezado(config) {
-    if (!config) return;
+  // Renderiza la información general y del evento desde data.json
 
+  renderizarEncabezado(config) {
     // Títulos principales
     const elTitulo = document.getElementById("rifa-titulo");
     const elDesc = document.getElementById("rifa-descripcion");
-    if (elTitulo) elTitulo.textContent = config.titulo || "Gran Rifa";
-    if (elDesc) elDesc.textContent = config.descripcion || "";
+    if (elTitulo) elTitulo.textContent = config.titulo;
+    if (elDesc) elDesc.textContent = config.descripcion;
 
-    // Fecha y Hora del Sorteo
+    // Fecha y Hora
     const elFecha = document.getElementById("event-fecha");
     const elHora = document.getElementById("event-hora");
     if (elFecha) elFecha.textContent = config.fecha_sorteo || "--";
@@ -81,47 +59,16 @@ const ui = {
   },
 
   /**
-   * Renderiza las métricas cuantitativas (Disponibles, Seleccionados, Reservados)
-   */
-  renderizarMetricas() {
-    const config = app.data.configuracion;
-    const boletos = app.data.boletos || {};
-
-    const totalBoletos = config.total_boletos || 0;
-    let reservadosCount = 0;
-
-    // Cuenta boletos ocupados/reservados del JSON
-    Object.values(boletos).forEach((b) => {
-      if (b.estado === "ocupado") reservadosCount++;
-    });
-
-    const seleccionadosCount = app.numerosSeleccionados.length;
-    const disponiblesCount = Math.max(
-      0,
-      totalBoletos - reservadosCount - seleccionadosCount,
-    );
-
-    const elDisp = document.getElementById("metric-disponibles");
-    const elSelec = document.getElementById("metric-seleccionados");
-    const elReser = document.getElementById("metric-reservados");
-
-    if (elDisp) elDisp.textContent = disponiblesCount;
-    if (elSelec) elSelec.textContent = seleccionadosCount;
-    if (elReser) elReser.textContent = reservadosCount;
-  },
-
-  /**
    * Renderiza las tarjetas de premios
    */
   renderizarPremios(premios) {
     const container = document.getElementById("premios-container");
-    if (!container || !Array.isArray(premios)) return;
-
+    if (!container) return; /*agreba el tab para varias paginas*/
     container.innerHTML = premios
       .map(
         (p) => `
             <div class="premio-card">
-                <div class="premio-icono">${p.icono || "🎁"}</div>
+                <div class="premio-icono">${p.icono}</div>
                 <div class="premio-info">
                     <h3>${p.puesto}</h3>
                     <p>${p.nombre}</p>
@@ -137,7 +84,7 @@ const ui = {
    */
   renderizarTabs(config) {
     const container = document.getElementById("range-tabs");
-    if (!container || !config) return;
+    if (!container) return;
 
     const inicio = config.numero_inicio || 1;
     const total = config.total_boletos || 100;
@@ -159,9 +106,6 @@ const ui = {
     container.innerHTML = html;
   },
 
-  /**
-   * Cambia el rango activo desde la vista principal
-   */
   cambiarRango(index) {
     app.rangoActualIndex = index;
     this.renderizarTabs(app.data.configuracion);
@@ -169,13 +113,12 @@ const ui = {
   },
 
   /**
-   * Renderiza los botones de números según la pestaña de rango actual
+   * Muestra solo los números que corresponden a la pestaña seleccionada
    */
   renderizarTablero() {
     const config = app.data.configuracion;
-    const boletos = app.data.boletos || {};
+    const boletos = app.data.boletos;
     const grid = document.getElementById("numeros-grid");
-    if (!grid || !config) return;
 
     const inicio = config.numero_inicio || 1;
     const porPagina = config.por_pagina || 50;
@@ -202,9 +145,8 @@ const ui = {
     grid.innerHTML = html;
   },
 
-  /**
-   * Abre el popup del tablero ampliado
-   */
+  //  Abre el popup del tablero ampliado y sincroniza los contenidos
+
   abrirModalTableroGrande() {
     const modal = document.getElementById("modal-tablero-grande");
     if (modal) {
@@ -225,11 +167,11 @@ const ui = {
   },
 
   /**
-   * Renderiza las pestañas de rango dentro del modal
+   * Renderiza las pestañas dentro del modal
    */
   renderizarTabsModal(config) {
     const container = document.getElementById("modal-range-tabs");
-    if (!container || !config) return;
+    if (!container) return;
 
     const inicio = config.numero_inicio || 1;
     const total = config.total_boletos || 100;
@@ -252,7 +194,7 @@ const ui = {
   },
 
   /**
-   * Cambia el rango activo desde dentro del modal
+   * Cambia el rango y actualiza ambas vistas (principal y modal)
    */
   cambiarRangoModal(index) {
     app.rangoActualIndex = index;
@@ -263,13 +205,13 @@ const ui = {
   },
 
   /**
-   * Renderiza la grilla de números ampliada dentro del modal
+   * Renderiza la grilla de números dentro del modal
    */
   renderizarTableroModal() {
     const config = app.data.configuracion;
-    const boletos = app.data.boletos || {};
+    const boletos = app.data.boletos;
     const grid = document.getElementById("modal-numeros-grid");
-    if (!grid || !config) return;
+    if (!grid) return;
 
     const inicio = config.numero_inicio || 1;
     const porPagina = config.por_pagina || 50;
@@ -296,9 +238,7 @@ const ui = {
     grid.innerHTML = html;
   },
 
-  /**
-   * Manejador de evento al presionar cualquier boleto numérico
-   */
+  // Sobrescribe onNumeroClick para mantener sincronizadas ambas pantallas
   onNumeroClick(numero) {
     const exito = app.toggleNumero(numero);
     if (!exito) return;
@@ -306,12 +246,9 @@ const ui = {
     this.renderizarTablero();
     this.renderizarTableroModal();
     this.actualizarBarraCarrito();
-    this.renderizarMetricas();
   },
 
-  /**
-   * Actualiza el resumen flotante de compra (carrito inferior)
-   */
+  // Actualiza los totales de la barra flotante con verificaciones nulas
   actualizarBarraCarrito() {
     const resumen = app.obtenerResumen();
     const cartBar = document.getElementById("cart-bar");
@@ -319,12 +256,20 @@ const ui = {
     const cartLista = document.getElementById("cart-lista");
     const cartMonto = document.getElementById("cart-monto");
 
-    if (!cartBar || !cartCant || !cartLista || !cartMonto) return;
+    // Si alguno de los elementos del DOM no existe, detiene la ejecución para evitar fallos
+    if (!cartBar || !cartCant || !cartLista || !cartMonto) {
+      console.warn(
+        "Advertencia: No se encontraron todos los elementos del carrito en el DOM.",
+      );
+      return;
+    }
 
+    // Asignación segura de valores
     cartCant.textContent = resumen.cantidad;
     cartLista.textContent = resumen.listaTexto;
     cartMonto.textContent = resumen.montoFormateado;
 
+    // Alterna la visibilidad
     if (resumen.cantidad > 0) {
       cartBar.classList.add("visible");
     } else {
@@ -332,65 +277,33 @@ const ui = {
     }
   },
 
-  /**
-   * Abre el modal de reserva por WhatsApp
-   */
+  // Abre el modal de reserva
   abrirModalWhatsApp() {
     const resumen = app.obtenerResumen();
     if (resumen.cantidad === 0) return;
 
-    const modalNum = document.getElementById("modal-numeros");
-    const modalTot = document.getElementById("modal-total");
-    const modalRes = document.getElementById("modal-reserva");
-
-    if (modalNum) modalNum.textContent = resumen.listaTexto;
-    if (modalTot) modalTot.textContent = resumen.montoFormateado;
-    if (modalRes) modalRes.classList.add("active");
+    document.getElementById("modal-numeros").textContent = resumen.listaTexto;
+    document.getElementById("modal-total").textContent =
+      resumen.montoFormateado;
+    document.getElementById("modal-reserva").classList.add("active");
   },
 
-  /**
-   * Cierra el modal de reserva por WhatsApp
-   */
+  // Cierra el modal de reserva
   cerrarModalWhatsApp() {
-    const modalRes = document.getElementById("modal-reserva");
-    if (modalRes) modalRes.classList.remove("active");
+    document.getElementById("modal-reserva").classList.remove("active");
   },
 
   /**
-   * Modal Lightbox para ampliar la imagen del afiche
-   */
-  abrirImagenModal() {
-    const imgBanner = document.getElementById("afiche-img");
-    const modalImg = document.getElementById("modal-imagen");
-    const imgAmpliada = document.getElementById("img-ampliada");
-
-    if (imgBanner && modalImg && imgAmpliada) {
-      imgAmpliada.src = imgBanner.src;
-      modalImg.classList.add("active");
-    }
-  },
-
-  cerrarImagenModal() {
-    const modalImg = document.getElementById("modal-imagen");
-    if (modalImg) modalImg.classList.remove("active");
-  },
-
-  /**
-   * Valida los datos e inicia la redirección a la API de WhatsApp
+   * Procesa la confirmación y redirige a WhatsApp
    */
   confirmarReserva(event) {
     event.preventDefault();
 
-    const nombreElem = document.getElementById("nombre-comprador");
-    const telefonoElem = document.getElementById("telefono-comprador");
-
-    if (!nombreElem || !telefonoElem) return;
-
-    const nombre = nombreElem.value.trim();
-    const telefono = telefonoElem.value.trim();
+    const nombre = document.getElementById("nombre-comprador").value.trim();
+    const telefono = document.getElementById("telefono-comprador").value.trim();
 
     if (!nombre || !telefono) {
-      alert("Por favor, completa todos los campos requeridos.");
+      alert("Por favor, completa todos los campos.");
       return;
     }
 
@@ -400,5 +313,6 @@ const ui = {
   },
 };
 
-// Listener único al cargar el DOM
+// Iniciar aplicación al cargar el DOM
 document.addEventListener("DOMContentLoaded", () => ui.init());
+document.addEventListener("DOMContentLoaded", cargarInformacionFinanciera);

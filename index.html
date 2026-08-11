@@ -3,181 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gran Rifa Digital 2026</title>
+    <title>Gran Rifa Sorteo </title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- CONTENEDOR PRINCIPAL DOS COLUMNAS -->
+    <!-- contenedor principal-->
     <div class="app-layout">
-
-        <!-- COLUMNA IZQUIERDA: HERO + PREMIOS -->
+        <!-- Columna izq -->
         <aside class="col-izquierda">
-            <!-- Header / Banner principal -->
-            <header class="hero">
-                <span class="badge" id="rifa-categoria">Sorteo Regalón</span>
-                <h1 id="rifa-titulo">Gran Rifa</h1>
-                <p id="rifa-descripcion">"¡Apoyanos participanto y gana un excelente premio para tu hogar o negocio!"</p>
-            </header>
-
-            <!-- NUEVA SECCIÓN: IMAGEN / AFICHE -->               
+            <!-- 2. Imagen / Afiche Publicitario -->               
             <div class="afiche-container">
+                <!--span class="badge" id="rifa-categoria">Sorteo Solidario</span-->
                 <img src="assets/img/banner.jpeg" alt="Afiche Rifa" class="afiche-img" id="afiche-img" onclick="ui.abrirImagenModal()">
             </div>
+            <!-- 3. Tarjeta Unificada de Información Financiera -->
+            <div class="card-info-panel-left payment-section flex-col gap-md">
+                <!-- Fila 1: Valor del Número -->
+                <div class="info-row">
+                    <div>
+                        <span class="payment-label">VALOR DEL NÚMERO</span>
+                        <div class="price-value" id="label-precio-ticket">S/ 0</div>
+                    </div>
+                    <div class="ticket-icon">🎫</div>
+                </div>
 
-            <!--CONFGURANDO PANEL -->
-<div class="card-info-panel">
-    
-    <!-- Bloque Superior: Datos del Evento -->
-   
-    <div class="info-header-grid">
-        <div class="info-item">
-            <span class="icon">📅</span>
-            <span class="label">SORTEO</span>
-            <span class="val-yellow" id="event-fecha">--</span>
-        </div>
-        <div class="info-item border-x">
-            <span class="icon">⏱️</span>
-            <span class="label">HORA</span>
-            <span class="val-green" id="event-hora">--</span>
-        </div>
-        <!-- Enlace dinámico a la sesión -->
-        <a href="#" id="event-url" target="_blank" class="info-item info-item-link">
-            <span class="icon">📹</span>
-            <span class="label">VÍA</span>
-            <span class="val-blue" id="event-plataforma">ZOOM</span>
-            <span class="sublabel">En vivo ↗</span>
-        </a>
-    </div>
+                <hr class="divider">
 
-    <!-- Bloque Valor Ticket -->
-    <div class="price-banner">
-        <div>
-            <span class="price-label">VALOR DEL NÚMERO</span>
-            <div class="price-value">S/ 10</div>
-        </div>
-        <div class="ticket-icon">🎫</div>
-    </div>
-
-    <!-- Bloque Premios -->
-    <div class="prizes-section">
-        <!-- 1er Premio Destacado -->
-        <div class="badge-gold">🏆 1ER PREMIO</div>
-        <h3 class="prize-title">Impresora Láser</h3>
-        <h3 class="prize-subtitle">Pantum P2509W</h3>
-        
-        <ul class="features-list">
-            <li><span class="check">✓</span> Toner recargable</li>
-            <li><span class="check">✓</span> Memoria 128 MB</li>
-            <li><span class="check">✓</span> Compacta y eficiente</li>
-        </ul>
-
-        <!-- 2do y 3er Premio -->
-        <div class="secondary-prizes-grid">
-            <div class="sec-prize-card">
-                <span class="gift-icon">🎁</span>
-                <div>
-                    <span class="sec-prize-tag tag-pink">2DO PREMIO</span>
-                    <span class="sec-prize-name">Sorpresa</span>
+                <!-- Fila 2: Medio de Pago -->
+                <div class="info-row">
+                    <div>
+                        <span class="payment-label">PAGA CON</span>
+                        <div class="payment-method" id="label-medio-pago">--</div>
+                        <div class="payment-number" id="label-numero-pago">--</div>
+                        <div class="payment-owner" id="label-titular-pago">--</div>
+                    </div>
+                    <div class="card-icon-box">💳</div>
                 </div>
             </div>
-            <div class="sec-prize-card">
-                <span class="gift-icon">🎁</span>
-                <div>
-                    <span class="sec-prize-tag tag-blue">3ER PREMIO</span>
-                    <span class="sec-prize-name">Sorpresa</span>
-                </div>
-            </div>
-        </div>
-    </div>
+            <!-- 1. Header / Banner principal -->
+            <header class="hero">
+                
+                <h1 id="rifa-titulo">Gran Rifa</h1>
+                <p id="rifa-descripcion">¡Apoyanos participando y gana un excelente premio para tu hogar o negocio!</p>
+            </header>
 
-    <!-- Bloque Medio de Pago -->
-    <div class="payment-section">
-        <div>
-            <span class="payment-label">PAGA CON</span>
-            <div class="payment-method">Plin</div>
-            <div class="payment-number">979 374 568</div>
-            <div class="payment-owner">Luis Cav</div>
-        </div>
-        <div class="card-icon-box">💳</div>
-    </div>
-
-    <!-- Bloque Métricas Inferiores -->
-    <div class="metrics-grid">
-        <div class="metric-card">
-            <span class="metric-num val-white" id="metric-disponibles">87</span>
-            <span class="metric-label">Disponibles</span>
-        </div>
-        <div class="metric-card">
-            <span class="metric-num val-yellow" id="metric-seleccionados">0</span>
-            <span class="metric-label">Seleccionados</span>
-        </div>
-        <div class="metric-card">
-            <span class="metric-num val-blue-light" id="metric-reservados">13</span>
-            <span class="metric-label">Reservados</span>
-        </div>
-    </div>
-
-</div>
-
-            <!-- Sección de Premios -->
-            <section class="section container">
-                <h2 class="section-title">Premios a Sortear</h2>
-                <div class="premios-grid" id="premios-container">
-                    <!-- Cargado dinámicamente -->
-                </div>
-            </section>
         </aside>
-        
-        <!-- COLUMNA DERECHA: TABLERO DE NÚMEROS -->
+
+        <!-- ==========================================
+             COLUMNA DERECHA: PREMIOS + EVENTO + TABLERO
+             ========================================== -->
         <main class="col-derecha">
-            <!-- Tablero de Selección de Números**>
-            <main class="section container"-->
-            <div class="header-tablero">
-                <div>
-                    <h2 class="section-title">Elige tus Números</h2>
-                    <p class="subtitle">Haz clic en los números disponibles para seleccionarlos</p>
-                </div>
-                <!-- Leyenda de estados -->
-                <div class="leyenda">
-                   <span class="item-leyenda"><i class="dot libre"></i> Disponible</span>
-                   <span class="item-leyenda"><i class="dot seleccionado"></i> Seleccionado</span>
-                   <span class="item-leyenda"><i class="dot ocupado"></i> Vendido / Reservado</span>
 
-                   <!-- NUEVO BOTÓN CON ÍCONO DE LUPA -->
-                   <button class="btn-ampliar" onclick="ui.abrirModalTableroGrande()" title="Ampliar tablero">🔍 Ver grande</button>
+            <!-- 1. BLOQUE SUPERIOR OSCURO (PREMIOS + EVENTO & MÉTRICAS) -->
+            
+            <div class="top-dark-container">
+                <!-- Sub-bloque Derecho: Datos del Evento + Métricas -->
+                <div class="event-metrics-panel-dark">
+                    <!-- Datos del Evento (Fecha, Hora, Vía) -->
+                    <div class="info-header-grid">
+                        <div class="info-item">
+                            <span class="icon">📅</span>
+                            <span class="label">SORTEO</span>
+                            <span class="val-yellow" id="event-fecha">--</span>
+                        </div>
+                        <div class="info-item border-x">
+                            <span class="icon">⏱️</span>
+                            <span class="label">HORA</span>
+                            <span class="val-green" id="event-hora">--</span>
+                        </div>
+                        <a href="#" id="event-url" target="_blank" rel="noopener noreferrer" class="info-item info-item-link">
+                            <span class="icon">📹</span>
+                            <span class="label">VÍA</span>
+                            <span class="val-blue" id="event-plataforma">--</span>
+                            <span class="sublabel">En vivo ↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Métricas Inferiores -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-num val-dark" id="metric-disponibles">87</span>
+                        <span class="metric-label">Disponibles</span>
+                    </div>
+                     <div class="metric-card">
+                        <span class="metric-num val-yellow" id="metric-seleccionados">0</span>
+                        <span class="metric-label">Seleccionados</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-num val-blue" id="metric-reservados">13</span>
+                        <span class="metric-label">Reservados</span>
+                    </div>
                 </div>
             </div>
             
-            <!-- NUEVO MODAL PARA TABLERO COMPLETO EN POPUP -->
-            <div class="modal-overlay" id="modal-tablero-grande">
-                <div class="modal-card modal-card-xl">
-                    <button class="modal-close" onclick="ui.cerrarModalTableroGrande()">&times;</button>
-                    <h3>Tablero Completo de Números</h3>
-                    <p>Selecciona tus números directamente desde esta vista ampliada.</p>
-                    
-                    <!-- Pestañas de rangos dentro del modal -->
-                    <div class="range-tabs" id="modal-range-tabs"></div>
-                    
-                    <!-- Grilla de números dentro del modal -->
-                    <div class="numeros-grid numeros-grid-lg" id="modal-numeros-grid"></div>
+            <!-- 2. BLOQUE INFERIOR: SECCIÓN TABLERO DE NÚMEROS -->
+            <div class="board-section-card">
+                
+                <div class="header-tablero">
+                    <div class="tablero-titles">
+                        <h2 class="section-title">Elige tus Números</h2>
+                        <p class="subtitle">Haz clic en los números disponibles para seleccionarlos</p>
+                    </div>
+
+                    <div class="tablero-actions">
+                        <!-- Botón destacado "Ver grande" -->
+                        <button class="btn-ampliar-coral" onclick="ui.abrirModalTableroGrande()" title="Ampliar tablero">
+                            📣 Ver grande
+                        </button>
+
+                        <!-- Leyenda de estados -->
+                        <div class="leyenda">
+                            <span class="item-leyenda"><i class="dot libre"></i> Disponible</span>
+                            <span class="item-leyenda"><i class="dot seleccionado"></i> Seleccionado</span>
+                            <span class="item-leyenda"><i class="dot ocupado"></i> Vendido / Reservado</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Pestañas de Rangos -->
+                <div class="range-tabs" id="range-tabs">
+                    <button class="tab-btn active">101 - 150</button>
+                    <!-- Las demás pestañas se generan dinámicamente -->
+                </div>
+                
+                <!-- Rejilla de Números -->
+                <div class="numeros-grid" id="numeros-grid">
+                    <!-- Los botones numéricos se cargan mediante JS -->
+                </div>
+
             </div>
 
-            <!-- PESTAÑAS DE RANGOS DE NÚMEROS -->
-            <div class="range-tabs" id="range-tabs">
-                <!-- Se generan dinámicamente según la configuración -->
-            </div>
-            
-            <!-- Rejilla de números -->
-            <div class="numeros-grid" id="numeros-grid">
-                <!-- Cargado dinámicamente -->
-            </div>
- 
-             <!-- Barra flotante / Resumen de Compra -->
+            <!-- Barra Flotante de Carrito -->
             <div class="cart-bar" id="cart-bar">
                 <div class="cart-info">
                     <span class="cart-count"><strong id="cart-cant">0</strong> números seleccionados</span>
@@ -191,47 +151,101 @@
                 </div>
             </div>
 
-            <!-- Modal de Reserva WhatsApp -->
-            <div class="modal-overlay" id="modal-reserva">
-                <div class="modal-card">
-                    <button class="modal-close" onclick="ui.cerrarModalWhatsApp()">&times;</button>
-                    <h3>Completar Reserva</h3>
-                    <p>Ingresa tus datos para generar la reserva de tus números seleccionados.</p>
-                    
-                    <form id="form-reserva" onsubmit="ui.confirmarReserva(event)">
-                        <div class="form-group">
-                            <label for="nombre-comprador">Nombre Completo *</label>
-                            <input type="text" id="nombre-comprador" placeholder="Ej. Juan Pérez" required>
+            <div class="top-dark-container">
+
+             <!-- Sub-bloque Izquierdo: Sección Premios -->
+                <div class="prizes-section-dark">
+                    <div class="prize-main">
+                        <div class="badge-gold">🏆 1ER PREMIO</div>
+                        <h3 class="prize-title">Impresora Láser</h3>
+                        <h3 class="prize-subtitle">Pantum P2509W</h3>
+                        
+                        <ul class="features-list">
+                            <li><span class="check">✓</span> Toner recargable</li>
+                            <li><span class="check">✓</span> Memoria 128 MB</li>
+                            <li><span class="check">✓</span> Compacta y eficiente</li>
+                        </ul>
+                    </div>
+                
+                    <!-- Premios Secundarios -->
+                    <div class="secondary-prizes-grid">
+                        <div class="sec-prize-card">
+                            <span class="gift-icon">🎁</span>
+                            <div>
+                                <span class="sec-prize-tag tag-pink">2DO PREMIO</span>
+                                <span class="sec-prize-name">Sorpresa</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="telefono-comprador">Teléfono / WhatsApp *</label>
-                            <input type="tel" id="telefono-comprador" placeholder="Ej. 987654321" required>
+                        <div class="sec-prize-card">
+                            <span class="gift-icon">🎁</span>
+                            <div>
+                                <span class="sec-prize-tag tag-pink">3ER PREMIO</span>
+                                <span class="sec-prize-name">Sorpresa</span>
+                            </div>
                         </div>
-                        <div class="resumen-modal">
-                            <div><span>Números:</span> <strong id="modal-numeros">-</strong></div>
-                            <div><span>Total a Pagar:</span> <strong id="modal-total">S/ 0.00</strong></div>
-                        </div>
-                        <button type="submit" class="btn btn-whatsapp btn-full">
-                            Enviar Mensaje a WhatsApp
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
+
         </main>
     </div>    
-    <!-- Pie de página -->
-    <footer class="footer container">
-        <p>&copy; 2026 - Gran Rifa Confraternidad. Agracias por tu apoyo.</p>
-    </footer>
 
-    <!-- Carga de Scripts (Primero lógica de negocio app.js, luego ui.js) -->
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/ui.js"></script>
+    <!-- ==========================================
+         MODALES Y VENTANAS EMERGENTES
+         ========================================== -->
 
-    <!-- MODAL PARA VER IMAGEN EN TAMAÑO COMPLETO -->
+    <!-- Modal Tablero Grande -->
+    <div class="modal-overlay" id="modal-tablero-grande">
+        <div class="modal-card modal-card-xl">
+            <button class="modal-close" onclick="ui.cerrarModalTableroGrande()">&times;</button>
+            <h3>Tablero Completo de Números</h3>
+            <p>Selecciona tus números directamente desde esta vista ampliada.</p>                    
+        
+            <div class="range-tabs" id="modal-range-tabs"></div>        
+            <div class="numeros-grid numeros-grid-lg" id="modal-numeros-grid"></div>
+        </div>
+    </div>
+
+    <!-- Modal Reserva WhatsApp -->
+    <div class="modal-overlay" id="modal-reserva">
+        <div class="modal-card">
+            <button class="modal-close" onclick="ui.cerrarModalWhatsApp()">&times;</button>
+            <h3>Completar Reserva</h3>
+            <p>Ingresa tus datos para generar la reserva de tus números seleccionados.</p>
+            
+            <form id="form-reserva" onsubmit="ui.confirmarReserva(event)">
+                <div class="form-group">
+                    <label for="nombre-comprador">Nombre Completo *</label>
+                    <input type="text" id="nombre-comprador" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono-comprador">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="telefono-comprador" placeholder="Ej. 987654321" required>
+                </div>
+                <div class="resumen-modal">
+                    <div><span>Números:</span> <strong id="modal-numeros">-</strong></div>
+                    <div><span>Total a Pagar:</span> <strong id="modal-total">S/ 0.00</strong></div>
+                </div>
+                <button type="submit" class="btn btn-whatsapp btn-full">
+                    Enviar Mensaje a WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Imagen Completa -->
     <div class="modal-overlay" id="modal-imagen" onclick="ui.cerrarImagenModal()">
         <span class="modal-imagen-close">&times;</span>
         <img class="modal-imagen-content" id="img-ampliada" alt="Banner Completo">
     </div>
+
+    <!-- Pie de página -->
+    <footer class="footer container">
+        <p>&copy; 2026 - Gran Rifa Confraternidad. Gracias por tu apoyo.</p>
+    </footer>
+
+    <!-- Carga de Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/ui.js"></script>
 </body>
 </html>
