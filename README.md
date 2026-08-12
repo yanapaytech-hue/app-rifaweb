@@ -1,7 +1,7 @@
 # APP - RIFA WEB
 
 # Arquitectura
-
+```bash
 gran_rifa_web/
 ├── index.html # Punto de entrada HTML (Solo maquetación estructural)
 │
@@ -16,5 +16,5 @@ gran_rifa_web/
 │  
 └──.github\workflows
    └── azure-static-web-apps-victorious-forest-057a4ab0f.yml
-
+```
 #Mejoremos este readme
