@@ -35,55 +35,209 @@
     }
   ],
   "boletos": {
-    "101": { "estado": "ocupado", "comprador": "pau" },
-    "102": { "estado": "disponible" },
-    "103": { "estado": "disponible" },
-    "104": { "estado": "disponible" },
-    "105": { "estado": "disponible" },
-    "106": { "estado": "ocupado", "comprador": "ros" },
-    "107": { "estado": "ocupado", "comprador": "rau" },
-    "108": { "estado": "disponible" },
-    "109": { "estado": "disponible" },
-    "110": { "estado": "ocupado", "comprador": "lui" },
-    "111": { "estado": "disponible" },
-    "112": { "estado": "ocupado", "comprador": "rau" },
-    "113": { "estado": "disponible" },
-    "114": { "estado": "ocupado", "comprador": "jeo" },
-    "115": { "estado": "disponible" },
-    "116": { "estado": "disponible" },
-    "117": { "estado": "ocupado", "comprador": "gio" },
-    "118": { "estado": "disponible" },
-    "119": { "estado": "ocupado", "comprador": "ros" },
-    "120": { "estado": "ocupado", "comprador": "gin" },
-    "121": { "estado": "ocupado", "comprador": "sss" },
-    "122": { "estado": "ocupado", "comprador": "edi" },
-    "123": { "estado": "disponible" },
-    "124": { "estado": "ocupado", "comprador": "noe" },
-    "125": { "estado": "disponible" },
-    "126": { "estado": "ocupado", "comprador": "nic" },
-    "127": { "estado": "ocupado", "comprador": "osc" },
-    "128": { "estado": "ocupado", "comprador": "mar" },
-    "129": { "estado": "disponible" },
-    "130": { "estado": "ocupado", "comprador": "sss" },
-    "131": { "estado": "ocupado", "comprador": "gin" },
-    "132": { "estado": "disponible" },
-    "133": { "estado": "ocupado", "comprador": "edi" },
-    "134": { "estado": "disponible" },
-    "135": { "estado": "disponible" },
-    "136": { "estado": "disponible" },
-    "137": { "estado": "disponible" },
-    "138": { "estado": "disponible" },
-    "139": { "estado": "disponible" },
-    "140": { "estado": "ocupado", "comprador": "ros" },
-    "141": { "estado": "disponible" },
-    "142": { "estado": "ocupado", "comprador": "ros" },
-    "143": { "estado": "disponible" },
-    "144": { "estado": "disponible" },
-    "145": { "estado": "disponible" },
-    "146": { "estado": "ocupado", "comprador": "pau" },
-    "147": { "estado": "disponible" },
-    "148": { "estado": "disponible" },
-    "149": { "estado": "ocupado", "comprador": "rau" },
-    "150": { "estado": "disponible" }
+    "101": {
+      "estado": "ocupado",
+      "comprador": "PAU",
+      "celular": ""
+    },
+    "102": {
+      "estado": "ocupado",
+      "comprador": "MIC",
+      "celular": "932****13"
+    },
+    "103": {
+      "estado": "disponible"
+    },
+    "104": {
+      "estado": "disponible"
+    },
+    "105": {
+      "estado": "ocupado",
+      "comprador": "LEX",
+      "celular": "914****72"
+    },
+    "106": {
+      "estado": "ocupado",
+      "comprador": "ROS",
+      "celular": "970****03"
+    },
+    "107": {
+      "estado": "ocupado",
+      "comprador": "RAU",
+      "celular": "946****92"
+    },
+    "108": {
+      "estado": "disponible"
+    },
+    "109": {
+      "estado": "disponible"
+    },
+    "110": {
+      "estado": "ocupado",
+      "comprador": "LUI",
+      "celular": "991****49"
+    },
+    "111": {
+      "estado": "disponible"
+    },
+    "112": {
+      "estado": "ocupado",
+      "comprador": "RAU",
+      "celular": "946****92"
+    },
+    "113": {
+      "estado": "disponible"
+    },
+    "114": {
+      "estado": "ocupado",
+      "comprador": "JEO",
+      "celular": "962****91"
+    },
+    "115": {
+      "estado": "disponible"
+    },
+    "116": {
+      "estado": "disponible"
+    },
+    "117": {
+      "estado": "ocupado",
+      "comprador": "GIO",
+      "celular": "962****22"
+    },
+    "118": {
+      "estado": "disponible"
+    },
+    "119": {
+      "estado": "ocupado",
+      "comprador": "ROS",
+      "celular": "920****73"
+    },
+    "120": {
+      "estado": "ocupado",
+      "comprador": "GIN",
+      "celular": "934****78"
+    },
+    "121": {
+      "estado": "ocupado",
+      "comprador": "SSS",
+      "celular": ""
+    },
+    "122": {
+      "estado": "ocupado",
+      "comprador": "EDI",
+      "celular": "937****86"
+    },
+    "123": {
+      "estado": "disponible"
+    },
+    "124": {
+      "estado": "ocupado",
+      "comprador": "NOH",
+      "celular": "993****34"
+    },
+    "125": {
+      "estado": "ocupado",
+      "comprador": "RON",
+      "celular": "956****31"
+    },
+    "126": {
+      "estado": "ocupado",
+      "comprador": "NIC",
+      "celular": "999****34"
+    },
+    "127": {
+      "estado": "ocupado",
+      "comprador": "OSC",
+      "celular": "987****21"
+    },
+    "128": {
+      "estado": "ocupado",
+      "comprador": "MAR",
+      "celular": "943****19"
+    },
+    "129": {
+      "estado": "disponible"
+    },
+    "130": {
+      "estado": "ocupado",
+      "comprador": "SSS",
+      "celular": ""
+    },
+    "131": {
+      "estado": "ocupado",
+      "comprador": "GIN",
+      "celular": "934****78"
+    },
+    "132": {
+      "estado": "disponible"
+    },
+    "133": {
+      "estado": "ocupado",
+      "comprador": "EDI",
+      "celular": "937****86"
+    },
+    "134": {
+      "estado": "disponible"
+    },
+    "135": {
+      "estado": "disponible"
+    },
+    "136": {
+      "estado": "disponible"
+    },
+    "137": {
+      "estado": "ocupado",
+      "comprador": "GRA",
+      "celular": "966****43"
+    },
+    "138": {
+      "estado": "disponible"
+    },
+    "139": {
+      "estado": "disponible"
+    },
+    "140": {
+      "estado": "ocupado",
+      "comprador": "ROS",
+      "celular": "920****73"
+    },
+    "141": {
+      "estado": "disponible"
+    },
+    "142": {
+      "estado": "ocupado",
+      "comprador": "ROS",
+      "celular": "970****03"
+    },
+    "143": {
+      "estado": "disponible"
+    },
+    "144": {
+      "estado": "disponible"
+    },
+    "145": {
+      "estado": "disponible"
+    },
+    "146": {
+      "estado": "ocupado",
+      "comprador": "PAU",
+      "celular": ""
+    },
+    "147": {
+      "estado": "ocupado",
+      "comprador": "GRA",
+      "celular": "966****43"
+    },
+    "148": {
+      "estado": "disponible"
+    },
+    "149": {
+      "estado": "ocupado",
+      "comprador": "RAU",
+      "celular": "993****03"
+    },
+    "150": {
+      "estado": "disponible"
+    }
   }
 }
