@@ -127,8 +127,10 @@
       "comprador": "EDI",
       "celular": "937****86"
     },
-    "123": {
-      "estado": "disponible"
+     "123": {
+      "estado": "ocupado",
+      "comprador": "MIR",
+      "celular": "924****55"
     },
     "124": {
       "estado": "ocupado",
