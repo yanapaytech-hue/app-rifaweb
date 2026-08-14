@@ -34,7 +34,7 @@
       "icono": "🧺"
     }
   ],
-  "boletos": {
+    "boletos": {
     "101": {
       "estado": "ocupado",
       "comprador": "PAU",
@@ -78,7 +78,9 @@
       "celular": "991****49"
     },
     "111": {
-      "estado": "disponible"
+      "estado": "ocupado",
+      "comprador": "WIL",
+      "celular": "961****05"
     },
     "112": {
       "estado": "ocupado",
@@ -127,7 +129,7 @@
       "comprador": "EDI",
       "celular": "937****86"
     },
-     "123": {
+    "123": {
       "estado": "ocupado",
       "comprador": "MIR",
       "celular": "924****55"
