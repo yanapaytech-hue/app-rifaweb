@@ -67,7 +67,9 @@
       "celular": "946****92"
     },
     "108": {
-      "estado": "disponible"
+      "estado": "ocupado",
+      "comprador": "ERI",
+      "celular": "944****83"
     },
     "109": {
       "estado": "disponible"
@@ -99,7 +101,9 @@
       "estado": "disponible"
     },
     "116": {
-      "estado": "disponible"
+      "estado": "ocupado",
+      "comprador": "WIL",
+      "celular": "961****05"
     },
     "117": {
       "estado": "ocupado",
@@ -206,7 +210,9 @@
       "celular": "920****73"
     },
     "141": {
-      "estado": "disponible"
+      "estado": "ocupado",
+      "comprador": "ERI",
+      "celular": "944****83"
     },
     "142": {
       "estado": "ocupado",
