@@ -10,7 +10,7 @@
     "plataforma": "ZOOM",
     "url_transmision": "https://zoom.us/es/join",
     "numero_inicio": 101,
-    "total_boletos": 50,
+    "total_boletos": 70,
     "por_pagina": 50,
     "precioTicket": 10,
     "plataforma_pago": "Plin SIP",
