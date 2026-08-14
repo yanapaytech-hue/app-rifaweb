@@ -20,7 +20,11 @@
   "premios": [
     { "puesto": "1er Premio",
       "nombre": "Impresora Lasser PANTUM P2509",
-      "icono": "📺"    },
+      "caracteristicas-ico": "📄",
+      "Caracteristicas": "https://www.pantum.com.ar/product-center/1664560573965873154.html", 
+      "unboxin-ico": "🎬", 
+      "unboxing": "Video Unboxing: "https://www.youtube.com/watch?v=Yey3fIXLpWE",
+      "icono": "📺" },
     { "puesto": "2do Premio",
       "nombre": "Premio Sorpresa\" -",
       "icono": "📱"    },
