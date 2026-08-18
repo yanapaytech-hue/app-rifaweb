@@ -10,7 +10,7 @@
     "plataforma": "ZOOM",
     "url_transmision": "https://zoom.us/es/join",
     "numero_inicio": 101,
-    "total_boletos": 70,
+    "total_boletos": 75,
     "por_pagina": 50,
     "precioTicket": 10,
     "plataforma_pago": "Plin SIP",
@@ -101,7 +101,7 @@
     "170": {"estado": "ocupado","comprador": "JAV","celular": "965****43"},
     "171": {"estado": "ocupado","comprador": "RAU","celular": ""},
     "172": {"estado": "disponible"},
-    "173": {"estado": "disponible"},
+    "173": {"estado": "ocupado","comprador": "NUV","celular": "90"},
     "174": {"estado": "disponible"},
     "175": {"estado": "ocupado","comprador": "RAU","celular": ""},
     "176": {"estado": "disponible"}
